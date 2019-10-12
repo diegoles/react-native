@@ -26,6 +26,10 @@ export default class MyAccount extends React.Component {
         this.setState({
           login: true
         });
+      } else {
+        this.setState({
+          login: false
+        });
       }
     });
   }
@@ -35,12 +39,22 @@ export default class MyAccount extends React.Component {
     this.props.navigation.navigate(nameScreen);
   };
 
+  logout = () => {
+    console.log("Cerrando sesión...");
+    firebase.auth().signOut();
+  };
+
   render() {
     console.log("Me ejecuto segundo...");
     <Text>MyAccount Screen!!!</Text>;
     const { login } = this.state;
     if (login) {
-      return <Text>Estas logueado correctamente....</Text>;
+      return (
+        <View style={styles.container}>
+          <Text>Estas logueado correctamente....</Text>
+          <Button title="Cerra sesión." onPress={() => this.logout()} />
+        </View>
+      );
     } else {
       return (
         <View style={styles.container}>

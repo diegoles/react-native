@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { Button } from "react-native-elements";
+import { StyleSheet, View } from "react-native";
+import { Button, Text } from "react-native-elements";
 
 import t from "tcomb-form-native";
 const Form = t.form.Form;
@@ -18,7 +18,8 @@ export default class Register extends React.Component {
         email: "",
         password: "",
         passwordConfirmation: ""
-      }
+      },
+      formErrorMessage: ""
     };
   }
 
@@ -32,11 +33,20 @@ export default class Register extends React.Component {
       const validate = this.refs.registerForm.getValue();
       if (validate) {
         console.log("Formulario correcto.");
+        this.setState({
+          formErrorMessage: ""
+        });
       } else {
         console.log("Formulario inválido.");
+        this.setState({
+          formErrorMessage: "Formulario inválido..."
+        });
       }
     } else {
       console.log("Contraseñas no son iguales.");
+      this.setState({
+        formErrorMessage: "Contraseñas no son iguales..."
+      });
     }
 
     const validate = this.refs.registerForm.getValue();
@@ -52,7 +62,7 @@ export default class Register extends React.Component {
   };
 
   render() {
-    const { registerStruct, registerOptions } = this.state;
+    const { registerStruct, registerOptions, formErrorMessage } = this.state;
     return (
       <View style={styles.viewBody}>
         <Text>Register Screen!!!</Text>
@@ -63,7 +73,12 @@ export default class Register extends React.Component {
           value={this.state.formData}
           onChange={formValue => this.onChangeFormRegister(formValue)}
         />
-        <Button title="Unirme" onPress={() => this.register()} />
+        <Button
+          buttonStyle={styles.buttomRegisterContainer}
+          title="Unirme"
+          onPress={() => this.register()}
+        />
+        <Text style={styles.formErrorMessage}>{formErrorMessage}</Text>
       </View>
     );
   }
@@ -74,5 +89,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: 40,
     marginRight: 40
+  },
+  buttomRegisterContainer: {
+    backgroundColor: "#00a680",
+    marginTop: 20,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  formErrorMessage: {
+    color: "#f00",
+    textAlign: "center",
+    marginTop: 30
   }
 });

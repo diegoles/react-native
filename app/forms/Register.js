@@ -2,6 +2,7 @@ import React from "react";
 
 import t from "tcomb-form-native";
 import formValidation from "../utils/Validation";
+import inputTemplate from "./templates/Input";
 
 export const RegisterStruct = t.struct({
   name: t.String,
@@ -13,28 +14,40 @@ export const RegisterStruct = t.struct({
 export const RegisterOptions = {
   fields: {
     name: {
-      label: "Nombre (*):",
-      placeholder: "Escribe tu nombre y apellido",
-      error: "Nombre inválido"
+      template: inputTemplate,
+      config: {
+        placeholder: "Escribe tu nombre y apellido",
+        iconName: "account-outline",
+        iconType: "material-community"
+      }
     },
     email: {
-      label: "Email (*):",
-      placeholder: "Escribe tu email",
-      error: "Email inválido"
+      template: inputTemplate,
+      config: {
+        placeholder: "Escribe tu email",
+        iconName: "at",
+        iconType: "material-community"
+      }
     },
     password: {
-      label: "Contraseña (*):",
-      placeholder: "Escribe tu contraseña",
-      error: "Contraseña inválido",
-      password: true,
-      secureTextEntry: true
+      template: inputTemplate,
+      config: {
+        placeholder: "Escribe tu contraseña",
+        password: true,
+        secureTextEntry: true,
+        iconName: "lock-outline",
+        iconType: "material-community"
+      }
     },
     passwordConfirmation: {
-      label: "Repetir contraseña:",
-      placeholder: "Escribe tu contraseña",
-      error: "Contraseña inválido",
-      password: true,
-      secureTextEntry: true
+      template: inputTemplate,
+      config: {
+        placeholder: "Repetir contraseña",
+        password: true,
+        secureTextEntry: true,
+        iconName: "lock-reset",
+        iconType: "material-community"
+      }
     }
   }
 };

@@ -6,6 +6,7 @@ import t from "tcomb-form-native";
 const Form = t.form.Form;
 import { RegisterStruct, RegisterOptions } from "../../forms/Register";
 import * as firebase from "firebase";
+import Toast, { DURATION } from "react-native-easy-toast";
 
 export default class Register extends React.Component {
   constructor() {
@@ -43,9 +44,14 @@ export default class Register extends React.Component {
           .createUserWithEmailAndPassword(validate.email, validate.password)
           .then(resolve => {
             console.log("Registro correcto...");
+            this.refs.toast.show("Registro correcto...", 200, () => {
+              //this.props.navigation.navigate("MyAccount");
+              this.props.navigation.goBack();
+            });
           })
           .catch(error => {
             console.log("Email ya esta en uso...");
+            this.refs.toast.show("Email ya esta en uso...", 2500);
           });
       } else {
         console.log("Formulario inválido.");
@@ -89,6 +95,18 @@ export default class Register extends React.Component {
           title="Unirme"
           onPress={() => this.register()}
         />
+
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: "gray" }}
+          position="top"
+          positionValue={200}
+          fadeInDuration={750}
+          fadeOutDuration={1000}
+          opacity={0.8}
+          textStyle={{ color: "#fff" }}
+        />
+
         <Text style={styles.formErrorMessage}>{formErrorMessage}</Text>
       </View>
     );

@@ -12,9 +12,38 @@ export default class Login extends React.Component {
 
     this.state = {
       loginOptions: LoginOptions,
-      loginStruct: LoginStruct
+      loginStruct: LoginStruct,
+      loginData: {
+        email: "",
+        password: ""
+      },
+      loginErrorMessage=""
     };
   }
+
+  login = () => {
+    console.log("Haciendo login..");
+    console.log(this.state.loginData);
+    const validate = this.refs.loginForm.getValue();
+    if (validate) {
+      console.log("Logueando...");
+      this.setState({
+        loginErrorMessage:""
+    });
+    } else {
+      console.log("Formulario incorrecto...");
+      this.setState({
+          loginErrorMessage:"Los datos del formulario son errones"
+      });
+    }
+  };
+  onChangeFormLogin = formValue => {
+    console.log("Change Form Login..");
+    console.log(formValue);
+    this.setState({
+      loginData: formValue
+    });
+  };
 
   render() {
     const { loginOptions, loginOptions } = this.state;
@@ -31,8 +60,19 @@ export default class Login extends React.Component {
         />
 
         <View style={styles.viewForm}>
-          <Form ref="loginForm" type={loginStruct} optioons={loginOptions} />
-          <Button buttonStyle={styles.buttonLoginContainer} title="Login" />
+          <Form
+            ref="loginForm"
+            type={loginStruct}
+            optioons={loginOptions}
+            value={this.state.loginData}
+            onChange={formValue => this.onChangeFormLogin(formValue)}
+          />
+          <Button
+            buttonStyle={styles.buttonLoginContainer}
+            title="Login"
+            onPress={() => this.login()}
+          />
+          <Text style={styles.loginErrorMessage}>{loginErrorMessage}</Text>
         </View>
       </View>
     );
@@ -60,5 +100,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 10,
     marginRight: 10
+  },
+  loginErrorMessage: {
+    color: "#f00",
+    textAlign: "center",
+    marginTop: 30
   }
+
 });

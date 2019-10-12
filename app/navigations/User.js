@@ -10,7 +10,8 @@ import { Icon } from "react-native-elements";
 import HomeScreen from "../screens/Home";
 import TopFiveScreen from "../screens/TopFive";
 import SearchScreen from "../screens/Search";
-import MyAccountScreen from "../screens/MyAccount";
+import MyAccountScreen from "../screens/MyAccount/MyAccount";
+import RegisterScreen from "../screens/MyAccount/Register";
 
 const homeScreenStack = createStackNavigator({
   Home: {
@@ -45,6 +46,12 @@ const myAccountScreenStack = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: "Mi cuenta"
     })
+  },
+  Register: {
+    screen: RegisterScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "Registro"
+    })
   }
 });
 
@@ -53,7 +60,7 @@ const RootStack = createBottomTabNavigator(
     Home: {
       screen: homeScreenStack,
       navigationOptions: ({ navigation }) => ({
-        tabBarLabel: "Inicio App",
+        tabBarLabel: "Inicio.",
         tabBarIcon: ({ tintColor }) => (
           <Icon
             name="compass-outline"
@@ -67,7 +74,7 @@ const RootStack = createBottomTabNavigator(
     TopFive: {
       screen: topFiveScreenStack,
       navigationOptions: ({ navigation }) => ({
-        tabBarLabel: "Top 5",
+        tabBarLabel: "Top 5.",
         tabBarIcon: ({ tintColor }) => (
           <Icon
             name="star-outline"
@@ -81,7 +88,7 @@ const RootStack = createBottomTabNavigator(
     Search: {
       screen: searchScreenStack,
       navigationOptions: ({ navigation }) => ({
-        tabBarLabel: "Buscar 1",
+        tabBarLabel: "Buscar.",
         tabBarIcon: ({ tintColor }) => (
           <Icon
             name="magnify"
@@ -95,7 +102,7 @@ const RootStack = createBottomTabNavigator(
     MyAccount: {
       screen: myAccountScreenStack,
       navigationOptions: ({ navigation }) => ({
-        tabBarLabel: "Cuenta Me",
+        tabBarLabel: "Cuenta.",
         tabBarIcon: ({ tintColor }) => (
           <Icon
             name="home-outline"
@@ -108,8 +115,8 @@ const RootStack = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "TopFive",
-    order: ["MyAccount", "Home", "TopFive", "Search"],
+    initialRouteName: "MyAccount",
+    order: ["Home", "TopFive", "Search", "MyAccount"],
     tabBarOptions: {
       inactiveTintColor: "#646464",
       activeTintColor: "#00a680"

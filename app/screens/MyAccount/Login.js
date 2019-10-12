@@ -6,6 +6,9 @@ import t from "tcomb-form-native";
 const Form = t.form.Form;
 import { LoginStruct, LoginOptions } from "../../forms/Login";
 
+import * as firebase from "firebase";
+import Toast, { DURATION } from "react-native-easy-toast";
+
 export default class Login extends React.Component {
   constructor() {
     super();
@@ -30,6 +33,21 @@ export default class Login extends React.Component {
       this.setState({
         loginErrorMessage: ""
       });
+
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(validate.email, validate.password)
+        .then(resolve => {
+          console.log("Logueo correcto...");
+          this.refs.toast.show("Logueo correcto...", 200, () => {
+            //this.props.navigation.navigate("MyAccount");
+            this.props.navigation.goBack();
+          });
+        })
+        .catch(error => {
+          console.log("Logueo incorrecto...");
+          this.refs.toast.show("Logueo incorrecto...", 2500);
+        });
     } else {
       console.log("Formulario incorrecto...");
       this.setState({
@@ -72,6 +90,18 @@ export default class Login extends React.Component {
             title="Login"
             onPress={() => this.login()}
           />
+
+          <Toast
+          ref="toast"
+          style={{ backgroundColor: "gray" }}
+          position="top"
+          positionValue={200}
+          fadeInDuration={750}
+          fadeOutDuration={1000}
+          opacity={0.8}
+          textStyle={{ color: "#fff" }}
+        />
+
           <Text style={styles.loginErrorMessage}>{loginErrorMessage}</Text>
         </View>
       </View>

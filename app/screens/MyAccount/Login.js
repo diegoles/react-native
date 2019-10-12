@@ -17,7 +17,7 @@ export default class Login extends React.Component {
         email: "",
         password: ""
       },
-      loginErrorMessage=""
+      loginErrorMessage: ""
     };
   }
 
@@ -28,12 +28,12 @@ export default class Login extends React.Component {
     if (validate) {
       console.log("Logueando...");
       this.setState({
-        loginErrorMessage:""
-    });
+        loginErrorMessage: ""
+      });
     } else {
       console.log("Formulario incorrecto...");
       this.setState({
-          loginErrorMessage:"Los datos del formulario son errones"
+        loginErrorMessage: "Los datos del formulario son errones"
       });
     }
   };
@@ -46,7 +46,7 @@ export default class Login extends React.Component {
   };
 
   render() {
-    const { loginOptions, loginOptions } = this.state;
+    const { loginStruct, loginOptions, loginErrorMessage } = this.state;
 
     return (
       <View style={styles.viewBody}>
@@ -63,7 +63,7 @@ export default class Login extends React.Component {
           <Form
             ref="loginForm"
             type={loginStruct}
-            optioons={loginOptions}
+            options={loginOptions}
             value={this.state.loginData}
             onChange={formValue => this.onChangeFormLogin(formValue)}
           />
@@ -106,5 +106,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 30
   }
-
 });

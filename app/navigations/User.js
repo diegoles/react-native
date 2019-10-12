@@ -81,7 +81,7 @@ const RootStack = createBottomTabNavigator(
     Search: {
       screen: searchScreenStack,
       navigationOptions: ({ navigation }) => ({
-        tabBarLabel: "Buscar",
+        tabBarLabel: "Buscar 1",
         tabBarIcon: ({ tintColor }) => (
           <Icon
             name="magnify"
@@ -108,6 +108,8 @@ const RootStack = createBottomTabNavigator(
     }
   },
   {
+    initialRouteName: "TopFive",
+    order: ["MyAccount", "Home", "TopFive", "Search"],
     tabBarOptions: {
       inactiveTintColor: "#646464",
       activeTintColor: "#00a680"

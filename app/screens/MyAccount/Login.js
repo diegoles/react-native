@@ -46,7 +46,14 @@ export default class Login extends React.Component {
         })
         .catch(error => {
           console.log("Logueo incorrecto...");
-          this.refs.toast.show("Logueo incorrecto...", 2500);
+          /*
+          // Se comenta por motivos de seguridad, no es bueno saber si un usuario esta en nuestros registros.
+          if ("auth/user-not-found" === error.code) {
+            this.refs.toast.show("El usuario no existe...", 2500);
+          } else if ("auth/wrong-password" === error.code) {
+            this.refs.toast.show("La contraseña es incorrecta...", 2500);
+          }*/
+          this.refs.toast.show("Logueo incorrecto revise sus datos...", 2500);
         });
     } else {
       console.log("Formulario incorrecto...");
@@ -92,15 +99,15 @@ export default class Login extends React.Component {
           />
 
           <Toast
-          ref="toast"
-          style={{ backgroundColor: "gray" }}
-          position="top"
-          positionValue={200}
-          fadeInDuration={750}
-          fadeOutDuration={1000}
-          opacity={0.8}
-          textStyle={{ color: "#fff" }}
-        />
+            ref="toast"
+            style={{ backgroundColor: "gray" }}
+            position="top"
+            positionValue={200}
+            fadeInDuration={750}
+            fadeOutDuration={1000}
+            opacity={0.8}
+            textStyle={{ color: "#fff" }}
+          />
 
           <Text style={styles.loginErrorMessage}>{loginErrorMessage}</Text>
         </View>

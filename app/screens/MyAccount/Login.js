@@ -129,6 +129,19 @@ export default class Login extends React.Component {
             title="Login"
             onPress={() => this.login()}
           />
+
+          <Text style={styles.textRegister}>
+            ¿Aún no tienes una cuenta?{" "}
+            <Text
+              style={styles.btnRegister}
+              onPress={() => this.props.navigation.navigate("Register")}
+            >
+              Regístrate!
+            </Text>
+          </Text>
+
+          <Text style={styles.loginErrorMessage}>{loginErrorMessage}</Text>
+
           <Divider style={styles.divider} />
           <SocialIcon
             title="Entrar con Facebook"
@@ -146,7 +159,6 @@ export default class Login extends React.Component {
             opacity={0.8}
             textStyle={{ color: "#fff" }}
           />
-          <Text style={styles.loginErrorMessage}>{loginErrorMessage}</Text>
         </View>
       </View>
     );
@@ -156,8 +168,8 @@ const styles = StyleSheet.create({
   viewBody: {
     flex: 1,
     marginTop: 40,
-    marginLeft: 40,
-    marginRight: 40
+    marginLeft: 30,
+    marginRight: 30
   },
   containerLogo: {
     alignItems: "center"
@@ -178,10 +190,20 @@ const styles = StyleSheet.create({
   loginErrorMessage: {
     color: "#f00",
     textAlign: "center",
-    marginTop: 30
+    marginTop: 20,
+    marginBottom: 20
   },
   divider: {
     backgroundColor: "#00a680",
     marginBottom: 20
+  },
+  textRegister: {
+    marginTop: 15,
+    marginLeft: 15,
+    marginRight: 10
+  },
+  btnRegister: {
+    color: "#00a680",
+    fontWeight: "bold"
   }
 });

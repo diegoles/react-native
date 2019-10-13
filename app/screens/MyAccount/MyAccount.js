@@ -5,6 +5,7 @@ import { Button } from "react-native-elements";
 import * as firebase from "firebase";
 
 import MyAccountGuest from "../../components/MyAccount/MyAccountGuest";
+import MyAccountUser from "../../components/MyAccount/MyAccountUser";
 
 export default class MyAccount extends React.Component {
   constructor() {
@@ -51,18 +52,9 @@ export default class MyAccount extends React.Component {
     <Text>MyAccount Screen!!!</Text>;
     const { login } = this.state;
     if (login) {
-      return (
-        <View style={styles.container}>
-          <Text>Estas logueado correctamente....</Text>
-          <Button title="Cerra sesión." onPress={() => this.logout()} />
-        </View>
-      );
+      return <MyAccountUser/>;
     } else {
-      return (
-        <View style={styles.container}>
-          <MyAccountGuest goToScreen={this.goToScreen} />
-        </View>
-      );
+      return <MyAccountGuest goToScreen={this.goToScreen} />;
     }
   }
 }

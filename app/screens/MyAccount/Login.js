@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
-import { Image, Button } from "react-native-elements";
+import { Image, Button, SocialIcon, Divider } from "react-native-elements";
 
 import t from "tcomb-form-native";
 const Form = t.form.Form;
@@ -8,6 +8,9 @@ import { LoginStruct, LoginOptions } from "../../forms/Login";
 
 import * as firebase from "firebase";
 import Toast, { DURATION } from "react-native-easy-toast";
+
+import * as Facebook from "expo-facebook";
+import FacebookApi from "../../utils/Social";
 
 export default class Login extends React.Component {
   constructor() {
@@ -62,6 +65,35 @@ export default class Login extends React.Component {
       });
     }
   };
+
+  loginFacebook = async function logIn() {
+    try {
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions
+      } = await Facebook.logInWithReadPermissionsAsync(
+        FacebookApi.aplicationId,
+        {
+          permissions: FacebookApi.permissions
+        }
+      );
+      if (type === "success") {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(
+          `https://graph.facebook.com/me?access_token=${token}`
+        );
+        Alert.alert("Logged in!", `Hi ${(await response.json()).name}!`);
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
+    }
+  };
+
   onChangeFormLogin = formValue => {
     console.log("Change Form Login..");
     console.log(formValue);
@@ -97,7 +129,13 @@ export default class Login extends React.Component {
             title="Login"
             onPress={() => this.login()}
           />
-
+          <Divider style={styles.divider} />
+          <SocialIcon
+            title="Entrar con Facebook"
+            button
+            type="facebook"
+            onPress={() => this.loginFacebook()}
+          />
           <Toast
             ref="toast"
             style={{ backgroundColor: "gray" }}
@@ -108,7 +146,6 @@ export default class Login extends React.Component {
             opacity={0.8}
             textStyle={{ color: "#fff" }}
           />
-
           <Text style={styles.loginErrorMessage}>{loginErrorMessage}</Text>
         </View>
       </View>
@@ -142,5 +179,9 @@ const styles = StyleSheet.create({
     color: "#f00",
     textAlign: "center",
     marginTop: 30
+  },
+  divider: {
+    backgroundColor: "#00a680",
+    marginBottom: 20
   }
 });

@@ -3,6 +3,8 @@ import { StyleSheet, View, Text } from "react-native";
 import { Avatar } from "react-native-elements";
 import * as firebase from "firebase";
 
+import UpdateUserInfo from "./UpdateUserInfo";
+
 export default class UserInfo extends Component {
   constructor(state) {
     super(state);
@@ -34,15 +36,18 @@ export default class UserInfo extends Component {
     const { displayName, email, photoURL } = this.state.userInfo;
 
     return (
-      <View style={styles.viewUserInfo}>
-        <Avatar
-          rounded
-          size="large"
-          source={{ uri: this.checkUserAvatar(photoURL) }}
-          containerStyle={styles.userInfoAvatar}
-        />
-        <Text style={styles.displayName}>{displayName}</Text>
-        <Text>{email}</Text>
+      <View>
+        <View style={styles.viewUserInfo}>
+          <Avatar
+            rounded
+            size="large"
+            source={{ uri: this.checkUserAvatar(photoURL) }}
+            containerStyle={styles.userInfoAvatar}
+          />
+          <Text style={styles.displayName}>{displayName}</Text>
+          <Text>{email}</Text>
+        </View>
+        <UpdateUserInfo />
       </View>
     );
   }
@@ -53,8 +58,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    marginTop: 30,
-    marginBottom: 30
+    paddingTop: 30,
+    paddingBottom: 30,
+    backgroundColor: "#f2f2f2"
   },
   userInfoAvatar: {
     marginRight: 20

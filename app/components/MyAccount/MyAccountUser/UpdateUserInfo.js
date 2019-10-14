@@ -2,16 +2,23 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { ListItem } from "react-native-elements";
 import MenuConfig from "./MenuConfig";
+import OverlayOneInput from "../../Elements/OverlayOneInput";
 
 export default class UpdateUserInfo extends Component {
-  constructor() {
-    super();
+  constructor(state) {
+    super(state);
 
     this.state = {
+      ...state,
+      overlayComponent: null,
       menuItems: MenuConfig
     };
+
+    console.log(this.state);
   }
 
+
+  
   render() {
     const { menuItems } = this.state;
     return (
@@ -34,6 +41,7 @@ export default class UpdateUserInfo extends Component {
             containerStyle={styles.contentContainerStyle}
           />
         ))}
+        <OverlayOneInput />
       </View>
     );
   }

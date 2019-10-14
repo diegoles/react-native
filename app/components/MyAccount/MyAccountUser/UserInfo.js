@@ -32,6 +32,22 @@ export default class UserInfo extends Component {
       ? photoURL
       : "https://api.adorable.io/avatars/285/abott@adorable.png";
   };
+
+  updateUserDisplayName = newDisplayName => {
+    console.log(newDisplayName);
+  };
+
+  returnUpdateUserInfoComponent = userInfoData => {
+    if (userInfoData.hasOwnProperty("uid")) {
+      return (
+        <UpdateUserInfo
+          userInfo={this.state.userInfo}
+          updateUserDisplayName={this.updateUserDisplayName}
+        />
+      );
+    }
+  };
+
   render() {
     const { displayName, email, photoURL } = this.state.userInfo;
 
@@ -47,7 +63,7 @@ export default class UserInfo extends Component {
           <Text style={styles.displayName}>{displayName}</Text>
           <Text>{email}</Text>
         </View>
-        <UpdateUserInfo />
+        {this.returnUpdateUserInfoComponent(this.state.userInfo)}
       </View>
     );
   }

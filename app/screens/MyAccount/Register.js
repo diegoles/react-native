@@ -8,7 +8,7 @@ import { RegisterStruct, RegisterOptions } from "../../forms/Register";
 import * as firebase from "firebase";
 import Toast, { DURATION } from "react-native-easy-toast";
 
-export default class Register extends React.Component {
+export default class Register extends Component {
   constructor() {
     super();
 

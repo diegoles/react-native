@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-export default class TopFive extends React.Component {
+export default class TopFive extends Component {
   render() {
     return (
       <View style={styles.container}>

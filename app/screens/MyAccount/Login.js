@@ -12,7 +12,7 @@ import Toast, { DURATION } from "react-native-easy-toast";
 import * as Facebook from "expo-facebook";
 import FacebookApi from "../../utils/Social";
 
-export default class Login extends React.Component {
+export default class Login extends Component {
   constructor() {
     super();
 

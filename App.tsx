@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import UserNavigation from "./app/navigations/User";
+import { StyleSheet, View } from "react-native";
+import UserNavigation from "./app/navigations/Navigation";
 // configuracion firebase
 import firebaseConfig from "./app/utils/FireBase";
 import * as firebase from "firebase";

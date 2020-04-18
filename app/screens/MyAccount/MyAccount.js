@@ -7,7 +7,7 @@ import * as firebase from "firebase";
 import MyAccountGuest from "../../components/MyAccount/MyAccountGuest";
 import MyAccountUser from "../../components/MyAccount/MyAccountUser";
 
-export default class MyAccount extends React.Component {
+export default class MyAccount extends Component {
   constructor() {
     super();
     console.log("Me ejecuto primero...");

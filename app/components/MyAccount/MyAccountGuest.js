@@ -1,18 +1,11 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
+import React from "react";
+import { StyleSheet, ScrollView, Text, ActivityIndicator } from "react-native";
 import { Button, Image } from "react-native-elements";
 
-export default class MyAccountGuest extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-  }
-
-  render() {
-    const { goToScreen } = this.props;
-
+export default function MyAccountGuest (props) {
+  const { goToScreen } = props;
     return (
-      <View style={styles.viewBody}>
+      <ScrollView style={styles.viewBody} centerContent={true}>
         <Image
           source={require("../../../assets/img/image-my-account-guest-01.jpg")}
           style={styles.image}
@@ -33,17 +26,16 @@ export default class MyAccountGuest extends Component {
           title="Ver tu perfil"
           onPress={() => goToScreen("Login")}
         />
-      </View>
+      </ScrollView>
     );
-  }
+  
 }
 
 const styles = StyleSheet.create({
   viewBody: {
     flex: 1,
     paddingLeft: 30,
-    paddingRight: 30,
-    justifyContent: "center"
+    paddingRight: 30
   },
   image: {
     height: 300,

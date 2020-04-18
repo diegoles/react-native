@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import UserInfo from "./UserInfo";
 
 export default class MyAccountUser extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <View>
@@ -17,5 +13,4 @@ export default class MyAccountUser extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});

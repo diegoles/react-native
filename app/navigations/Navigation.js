@@ -5,15 +5,15 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import { Icon } from "react-native-elements";
 
-import homeScreenStacks from "./HomeStacks";
+import restaurantsScreenStacks from "./RestaurantsStacks";
 import topFiveScreenStacks from "./TopFiveScreenStacks";
 import searchScreenStacks from "./SearchScreenStacks";
 import myAccountScreenStacks from "./MyAccountScreenStacks";
 
 const RootStack = createBottomTabNavigator(
   {
-    Home: {
-      screen: homeScreenStacks,
+    Restaurants: {
+      screen: restaurantsScreenStacks,
       navigationOptions: () => ({
         tabBarLabel: "Inicio.",
         tabBarIcon: ({ tintColor }) => (
@@ -70,8 +70,8 @@ const RootStack = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: "MyAccount",
-    order: ["Home", "TopFive", "Search", "MyAccount"],
+    initialRouteName: "Restaurants",
+    order: ["Restaurants", "TopFive", "Search", "MyAccount"],
     tabBarOptions: {
       inactiveTintColor: "#646464",
       activeTintColor: "#00a680",
